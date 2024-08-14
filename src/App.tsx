@@ -8,7 +8,7 @@ const client = generateClient<Schema>();
 
 function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-  const [file, setFile] = React.useState();
+  const [file, setFile] = React.useState<File>();
 
   useEffect(() => {
     client.models.Todo.observeQuery().subscribe({
@@ -20,7 +20,7 @@ function App() {
     client.models.Todo.create({ content: window.prompt("Todo content") });
   }
 
-  //@ts-expect-error
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleChange = (event: any) => {
     setFile(event.target.files[0]);
 };
@@ -45,6 +45,7 @@ function App() {
             <input type="file" onChange={handleChange} />
             <button
                 onClick={() =>
+                    file &&
                     uploadData({
                         path: `photos/${file.name}`,
                         data: file,

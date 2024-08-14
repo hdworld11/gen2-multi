@@ -5,8 +5,8 @@ export const firstbucket = defineStorage({
   isDefault: true
 });
 
-// export const secondbucket = defineStorage(
-//   {
-//     name: "mybucket2"
-//   }
-// );
+export const secondbucket = defineStorage(
+  {
+    name: "mybucket2"
+  }
+);
