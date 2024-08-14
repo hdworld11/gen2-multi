@@ -20,7 +20,7 @@ function App() {
     client.models.Todo.create({ content: window.prompt("Todo content") });
   }
 
-  //@ts-ignore
+  //@ts-expect-error
   const handleChange = (event: any) => {
     setFile(event.target.files[0]);
 };
