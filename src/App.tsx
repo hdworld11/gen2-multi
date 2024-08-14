@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
+import React from 'react';
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
+import { uploadData } from 'aws-amplify/storage';
 
 const client = generateClient<Schema>();
 
 function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+  const [file, setFile] = React.useState();
 
   useEffect(() => {
     client.models.Todo.observeQuery().subscribe({
@@ -16,6 +19,11 @@ function App() {
   function createTodo() {
     client.models.Todo.create({ content: window.prompt("Todo content") });
   }
+
+  //@ts-ignore
+  const handleChange = (event: any) => {
+    setFile(event.target.files[0]);
+};
 
   return (
     <main>
@@ -33,6 +41,19 @@ function App() {
           Review next step of this tutorial.
         </a>
       </div>
+      <div>
+            <input type="file" onChange={handleChange} />
+            <button
+                onClick={() =>
+                    uploadData({
+                        path: `photos/${file.name}`,
+                        data: file,
+                    })
+                }
+            >
+                Upload
+            </button>
+        </div>
     </main>
   );
 }
