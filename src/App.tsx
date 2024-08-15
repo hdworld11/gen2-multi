@@ -23,7 +23,7 @@ function App() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleChange = (event: any) => {
     setFile(event.target.files[0]);
-};
+  };
 
   return (
     <main>
@@ -49,6 +49,9 @@ function App() {
                     uploadData({
                         path: `photos/${file.name}`,
                         data: file,
+                        options: {
+                          bucket: 'mybucket1'
+                        }
                     })
                 }
             >
