@@ -8,10 +8,3 @@ export const firstbucket = defineStorage({
     ],
   })
 });
-
-export const secondbucket = defineStorage(
-  {
-    name: "mybucket2",
-    isDefault: true,
-  }
-);
