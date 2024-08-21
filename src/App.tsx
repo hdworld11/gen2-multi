@@ -47,7 +47,7 @@ function App() {
                 onClick={() =>
                     file &&
                     uploadData({
-                        path: `photos/${file.name}`,
+                        path: `photos/test.txt`,
                         data: new File(["test file"], "test.txt", {type: "text/plain"}),
                         options: {
                           bucket: 'mybucket1'
