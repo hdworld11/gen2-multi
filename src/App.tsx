@@ -48,7 +48,7 @@ function App() {
                     file &&
                     uploadData({
                         path: `photos/${file.name}`,
-                        data: file,
+                        data: new File(["test file"], "test.txt", {type: "text/plain"}),
                         options: {
                           bucket: 'mybucket1'
                         }
